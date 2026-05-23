@@ -1,0 +1,67 @@
+name: AI Node Check
+
+# Тестирование узлов Lastdep и обновление ai-ratings.json
+
+on:
+  # Каждые 2 часа. Для приватного репозитория это укладывается
+  # в бесплатный лимит 2000 мин/мес. Для публичного репо лимит
+  # не действует — можно поставить '0 * * * *' (каждый час)
+  # или '*/30 * * * *' (каждые 30 минут).
+  schedule:
+    - cron: '0 */2 * * *'
+  # Ручной запуск кнопкой в интерфейсе GitHub
+  workflow_dispatch:
+
+# Разрешаем коммитить результат обратно в репозиторий
+permissions:
+  contents: write
+
+# Не запускать новый прогон пока идёт предыдущий
+concurrency:
+  group: ai-node-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install "requests[socks]"
+
+      - name: Download Xray-core
+        run: |
+          curl -sL -o xray.zip \
+            https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
+          unzip -o xray.zip xray
+          chmod +x xray
+          ./xray version
+
+      - name: Run node tests
+        env:
+          SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL }}
+          SUB_HWID: ${{ secrets.SUB_HWID }}
+          VERIFY_AI: ${{ vars.VERIFY_AI || '0' }}
+          OUTPUT_FILE: ai-ratings.json
+        run: python test_nodes.py
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ai-ratings.json
+          if git diff --staged --quiet; then
+            echo "Изменений нет"
+          else
+            git commit -m "Update ratings $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
