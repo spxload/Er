@@ -1,74 +1,7 @@
 #!/usr/bin/env python3
 # =====================================================================
 #  test_nodes.py — серверное тестирование узлов Lastdep через Xray.
-#
-#  Что делает:
-#   1. Скачивает подписку Lastdep (с подменой заголовков, как Shadowrocket).
-#   2. Парсит все vless-узлы.
-#   3. Для каждого узла: поднимает Xray с локальным SOCKS, проверяет
-#      страну выхода (chat.openai.com/cdn-cgi/trace) и, опционально,
-#      реальную доступность каждого AI.
-#   4. Пишет результат в ai-ratings.json.
-#
-#  Запускается в GitHub Actions или на любом Linux-сервере.
-#  Зависимости: requests[socks], бинарь xray в ./xray
-#
-#  Переменные окружения:
-#   SUBSCRIPTION_URL  — ссылка на подписку (обязательно)
-#   SUB_HWID          — X-HWID для заголовков (обязательно)
-#   XRAY_BIN          — путь к бинарю xray (по умолч. ./xray)
-#   OUTPUT_FILE       — куда писать JSON (по умолч. ai-ratings.json)
-#   VERIFY_AI         — "1" чтобы делать глубокую проверку AI (медленнее)
 # =====================================================================
-
-# --- PATCH: universal node parser ---
-import base64
-
-SUPPORTED_SCHEMES = (
-    "vless://",
-    "vmess://",
-    "trojan://",
-    "ss://",
-    "ssr://",
-    "hy2://",
-    "hysteria2://",
-    "tuic://",
-    "wireguard://",
-)
-
-def extract_nodes(subscription_text: str):
-    text = subscription_text.strip()
-
-    # Попытка decode base64
-    decoded_variants = [text]
-
-    for decoder in (
-        base64.b64decode,
-        base64.urlsafe_b64decode,
-    ):
-        try:
-            padded = text + "=" * (-len(text) % 4)
-            decoded = decoder(padded).decode("utf-8", errors="ignore")
-            if "://" in decoded:
-                decoded_variants.append(decoded)
-        except Exception:
-            pass
-
-    all_nodes = []
-
-    for variant in decoded_variants:
-        for scheme in SUPPORTED_SCHEMES:
-            pattern = rf"{re.escape(scheme)}[^\s\"'<>]+"
-            matches = re.findall(pattern, variant, flags=re.IGNORECASE)
-            all_nodes.extend(matches)
-
-    # Удаляем дубли с сохранением порядка
-    unique_nodes = list(dict.fromkeys(all_nodes))
-
-    return unique_nodes
-
-# --- END PATCH ---
-
 
 import os
 import sys
@@ -78,6 +11,7 @@ import socket
 import subprocess
 import tempfile
 import time
+import re
 from urllib.parse import urlparse, parse_qs, unquote
 
 try:
@@ -131,24 +65,39 @@ def log(msg):
     print(f'[{time.strftime("%H:%M:%S")}] {msg}', flush=True)
 
 
-# ===== СКАЧИВАНИЕ ПОДПИСКИ =====
+# ===== СКАЧИВАНИЕ И ДЕКОДИРОВАНИЕ ПОДПИСКИ =====
 def fetch_subscription():
     if not SUB_URL:
         log('ОШИБКА: не задан SUBSCRIPTION_URL')
         sys.exit(1)
+        
     headers = dict(SUB_HEADERS)
     headers['Host'] = urlparse(SUB_URL).netloc
     log(f'Скачиваю подписку: {SUB_URL[:50]}...')
+    
     r = requests.get(SUB_URL, headers=headers, timeout=30)
     r.raise_for_status()
     body = r.text.strip()
-    # Подписка обычно base64
+    
+    if not body:
+        log('ВОРНИНГ: Сервер вернул пустой ответ.')
+        return ''
+
+    # Очищаем строку от пробелов и переносов для корректного Base64
+    body_clean = ''.join(body.split())
+    
     try:
-        decoded = base64.b64decode(body + '=' * (-len(body) % 4)).decode('utf-8', 'ignore')
+        # Нормализуем URL-safe Base64 в стандартный, если провайдер использовал его
+        normalized = body_clean.replace('-', '+').replace('_', '/')
+        # Дописываем правильный паддинг '='
+        padded = normalized + '=' * (-len(normalized) % 4)
+        
+        decoded = base64.b64decode(padded).decode('utf-8', 'ignore')
         if 'vless://' in decoded or 'vmess://' in decoded:
             return decoded
-    except Exception:
-        pass
+    except Exception as e:
+        log(f'Заметка: Не удалось декодировать как Base64 ({e}), обрабатываю как сырой текст.')
+        
     return body
 
 
@@ -299,7 +248,6 @@ def via_socks(port, url, timeout=8):
 
 
 def extract_country(body):
-    import re
     m = re.search(r'loc=([A-Z]{2})', body or '')
     return m.group(1) if m else None
 
@@ -313,7 +261,7 @@ def verify_ai(port, svc):
     if status is None:
         return 'unknown'
     body = body or ''
-    import re
+    
     if svc == 'chatgpt':
         if status == 403 and re.search(r'unsupported_country|not supported', body, re.I):
             return 'block'
@@ -408,10 +356,15 @@ def main():
 
     text = fetch_subscription()
     nodes = parse_subscription(text)
-    log(f'Узлов в подписке: {len(nodes)}')
+    
     if not nodes:
-        log('ОШИБКА: не найдено поддерживаемых узлов')
+        log('ОШИБКА: не найдено vless-узлов!')
+        # Дебаг-информация, чтобы увидеть, что прислал сервер
+        preview = (text[:150] + '...') if text else '[Пустой ответ]'
+        log(f'Контент ответа (первые 150 симв): {preview}')
         sys.exit(1)
+        
+    log(f'Узлов в подписке: {len(nodes)}')
 
     results = {}
     countries = set()
