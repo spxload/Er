@@ -48,6 +48,7 @@ VERIFY_ENDPOINTS = {
 
 TRACE_URL = 'https://chat.openai.com/cdn-cgi/trace'
 
+# Удален Accept-Encoding, чтобы requests автоматически расшифровывал сжатие сервера
 SUB_HEADERS = {
     'X-HWID': SUB_HWID,
     'User-Agent': 'Shadowrocket/3237 CFNetwork/3860.400.51 Darwin/25.3.0 iPhone14,7',
@@ -56,7 +57,6 @@ SUB_HEADERS = {
     'X-DEVICE-OS': 'iOS',
     'Accept': '*/*',
     'Accept-Language': 'ru',
-    'Accept-Encoding': 'gzip, deflate, br',
     'Connection': 'keep-alive',
 }
 
@@ -359,7 +359,6 @@ def main():
     
     if not nodes:
         log('ОШИБКА: не найдено vless-узлов!')
-        # Дебаг-информация, чтобы увидеть, что прислал сервер
         preview = (text[:150] + '...') if text else '[Пустой ответ]'
         log(f'Контент ответа (первые 150 симв): {preview}')
         sys.exit(1)
