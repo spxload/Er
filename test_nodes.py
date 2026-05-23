@@ -21,6 +21,55 @@
 #   VERIFY_AI         — "1" чтобы делать глубокую проверку AI (медленнее)
 # =====================================================================
 
+# --- PATCH: universal node parser ---
+import base64
+
+SUPPORTED_SCHEMES = (
+    "vless://",
+    "vmess://",
+    "trojan://",
+    "ss://",
+    "ssr://",
+    "hy2://",
+    "hysteria2://",
+    "tuic://",
+    "wireguard://",
+)
+
+def extract_nodes(subscription_text: str):
+    text = subscription_text.strip()
+
+    # Попытка decode base64
+    decoded_variants = [text]
+
+    for decoder in (
+        base64.b64decode,
+        base64.urlsafe_b64decode,
+    ):
+        try:
+            padded = text + "=" * (-len(text) % 4)
+            decoded = decoder(padded).decode("utf-8", errors="ignore")
+            if "://" in decoded:
+                decoded_variants.append(decoded)
+        except Exception:
+            pass
+
+    all_nodes = []
+
+    for variant in decoded_variants:
+        for scheme in SUPPORTED_SCHEMES:
+            pattern = rf"{re.escape(scheme)}[^\s\"'<>]+"
+            matches = re.findall(pattern, variant, flags=re.IGNORECASE)
+            all_nodes.extend(matches)
+
+    # Удаляем дубли с сохранением порядка
+    unique_nodes = list(dict.fromkeys(all_nodes))
+
+    return unique_nodes
+
+# --- END PATCH ---
+
+
 import os
 import sys
 import json
@@ -361,7 +410,7 @@ def main():
     nodes = parse_subscription(text)
     log(f'Узлов в подписке: {len(nodes)}')
     if not nodes:
-        log('ОШИБКА: не найдено vless-узлов')
+        log('ОШИБКА: не найдено поддерживаемых узлов')
         sys.exit(1)
 
     results = {}
