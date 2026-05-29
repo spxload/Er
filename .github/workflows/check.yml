@@ -46,19 +46,18 @@ jobs:
           chmod +x xray
           ./xray version
 
-      - name: Run node tests
-        env:
-          SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL }}
-          SUB_HWID: ${{ secrets.SUB_HWID }}
-          VERIFY_AI: ${{ vars.VERIFY_AI || '0' }}
-          OUTPUT_FILE: ai-ratings.json
-        run: python test_nodes.py
+      - name: Run RouteHub server
+     env:
+       SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL }}
+       SUB_HWID: ${{ secrets.SUB_HWID }}
+       VERIFY_AI: ${{ vars.VERIFY_AI || '1' }}
+     run: python routehub-server.py
 
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ai-ratings.json
+          git add routehub-ratings.json routehub-history.json
           if git diff --staged --quiet; then
             echo "Изменений нет"
           else
