@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 # =====================================================================
 #  routehub-server.py — серверная часть RouteHub (Этап B плана v3).
-#  ИИ-доступность: ОСНОВНОЙ критерий — живой запрос к эндпоинту;
-#  страна — запасной сигнал (при неинформативном ответе -> unknown).
-#  Гео: cf_loc (точка Cloudflare, loc=) и country/geo — РЕАЛЬНЫЙ
-#  выходной IP, определяется ЧЕРЕЗ туннель (как 2ip), без rate-limit.
-#  Тестирование параллельное (concurrency, B.4.10): свой Xray-порт
-#  на воркер. Скорость НЕ меряет. Рейтинг: EWMA, светофор 4 цвета.
+#  ИИ-доступность:
+#   - ChatGPT/Claude/Grok/Perplexity: страна, которую видит САМ сервис
+#     (его cdn-cgi/trace -> loc=); сверка с блок-листом этого сервиса.
+#   - Gemini: ЖИВОЙ запрос к gemini.google.com/app (Google блокирует по
+#     IP даже в разрешённой стране); детект страницы недоступности.
+#   - Ручные исключения manual_block в конфиге (Диана видит блок — дописывает).
+#  Гео: cf_loc (точка Cloudflare) и country/geo — РЕАЛЬНЫЙ выходной IP
+#  через туннель (как 2ip), без rate-limit.
+#  Тестирование параллельное (concurrency, B.4.10): пул Xray-портов.
+#  Скорость НЕ меряет. Рейтинг: EWMA, светофор 4 цвета.
 #  Стерильный лог: только имена узлов, НИКОГДА полные URI.
 # =====================================================================
 
@@ -28,7 +32,7 @@ SOCKS_PORT  = 10808
 DEFAULTS = {
     "verify_ai": True, "pause_min_sec": 0.5, "pause_max_sec": 3.0,
     "ewma_fresh": 0.7, "ewma_old": 0.3, "stale_hours": 4, "history_len": 20,
-    "concurrency": 6,
+    "concurrency": 6, "manual_block": {},
     "block_lists": {
         "chatgpt":    ["RU","BY","CN","KP","SY","IR","VE","CU","AF","UA"],
         "claude":     ["RU","BY","CN","KP","SY","IR","VE","CU","AF"],
@@ -43,12 +47,14 @@ DEFAULTS = {
     ],
 }
 
-VERIFY_ENDPOINTS = {
-    'chatgpt':    'https://api.openai.com/compliance/cookie_requirements',
-    'claude':     'https://claude.ai/api/bootstrap',
-    'gemini':     'https://gemini.google.com/',
-    'grok':       'https://grok.com/',
-    'perplexity': 'https://www.perplexity.ai/api/auth/session',
+# Для каждого ИИ узнаём страну, которую видит ЕГО собственный Cloudflare
+# (cdn-cgi/trace -> loc=). Сервис гейтит по этой стране, поэтому это
+# самый точный сигнал. У Gemini (Google) нет cdn-cgi -> живой запрос.
+SERVICE_TRACE = {
+    'chatgpt':    'https://chatgpt.com/cdn-cgi/trace',
+    'claude':     'https://claude.ai/cdn-cgi/trace',
+    'grok':       'https://grok.com/cdn-cgi/trace',
+    'perplexity': 'https://www.perplexity.ai/cdn-cgi/trace',
 }
 TRACE_URL = 'https://chat.openai.com/cdn-cgi/trace'
 SERVICES  = ['chatgpt', 'claude', 'gemini', 'grok', 'perplexity']
@@ -234,42 +240,48 @@ def geo_via_proxy(port):
     return None, ''
 
 
-def live_ai(port, svc):
-    # 'pass' / 'block' (явный регион-запрет) / 'unknown' (нет связи)
-    url = VERIFY_ENDPOINTS.get(svc)
+def service_country(port, svc):
+    # Страна, которую видит сам сервис (через его cdn-cgi/trace). None если нет связи.
+    url = SERVICE_TRACE.get(svc)
     if not url:
-        return 'unknown'
+        return None
     status, body, _ = via_socks(port, url, timeout=10)
+    if status is None:
+        return None
+    m = re.search(r'loc=([A-Z]{2})', body or '')
+    return m.group(1) if m else None
+
+
+# Маркеры страницы недоступности Gemini (Google блокирует по IP даже в
+# разрешённой стране — напр. на «голых» VPN-узлах). Детект по живому ответу.
+GEMINI_BLOCK_RE = re.compile(
+    r"(isn'?t|is not|aren'?t|are not) (currently )?(available|supported)"
+    r"|not (currently )?(available|supported) (in your|here)"
+    r"|unsupported_country", re.I)
+
+
+def gemini_live(port):
+    # Прямая проверка Gemini: 'block' если страница говорит о недоступности,
+    # 'pass' если приложение грузится, 'unknown' при сетевой ошибке.
+    status, body, _ = via_socks(port, 'https://gemini.google.com/app', timeout=12)
     if status is None:
         return 'unknown'
     body = body or ''
-    if svc == 'chatgpt':
-        if status == 403 and re.search(r'unsupported_country|not supported|VPN', body, re.I): return 'block'
-        if status in (200, 401, 403, 405, 400): return 'pass'
-    elif svc == 'claude':
-        if status == 451: return 'block'
-        if status == 403 and re.search(r'region|country|unsupported|unavailable', body, re.I): return 'block'
-        if status in (200, 401, 403, 400): return 'pass'
-    elif svc == 'gemini':
-        if re.search(r'not (currently )?(available|supported) in your (country|region)', body, re.I): return 'block'
-        if status in (200, 301, 302): return 'pass'
-    elif svc == 'grok':
-        if status == 451: return 'block'
-        if status == 403 and re.search(r'region|country|unavailable', body, re.I): return 'block'
-        if status in (200, 401, 403): return 'pass'
-    elif svc == 'perplexity':
-        if status == 451: return 'block'
-        if status == 403 and re.search(r'region|country|unavailable', body, re.I): return 'block'
-        if status in (200, 401, 403): return 'pass'
-    return 'unknown'
-
-
-def decide_service(svc, live, country, blocklist):
-    if live in ('pass', 'block'):
-        return live
-    if country and country in blocklist.get(svc, []):
+    if GEMINI_BLOCK_RE.search(body):
         return 'block'
+    if status == 200 and ('bard-frontend' in body or 'gemini' in body.lower()):
+        return 'pass'
     return 'unknown'
+
+
+def decide_service(svc, svc_cc, fallback_cc, blocklist):
+    # Для сервисов с cdn-cgi/trace: страна, которую видит сам сервис; иначе
+    # страна выходного IP. block если страна в блок-листе; pass если страна
+    # известна и НЕ в блоке; unknown если страну определить не удалось.
+    cc = svc_cc or fallback_cc
+    if not cc:
+        return 'unknown'
+    return 'block' if cc in blocklist.get(svc, []) else 'pass'
 
 
 def test_node(node, cfg, port=SOCKS_PORT):
@@ -294,10 +306,23 @@ def test_node(node, cfg, port=SOCKS_PORT):
         if country is None:
             country = cf_loc
         block = cfg['block_lists']
+        manual = cfg.get('manual_block', {})   # {имя_узла: [сервисы]} — ручные исключения
         services = {}
         for s in SERVICES:
-            live = live_ai(port, s) if cfg['verify_ai'] else 'unknown'
-            services[s] = decide_service(s, live, country, block)
+            if s == 'gemini' and cfg['verify_ai']:
+                # Gemini блокирует по IP даже в разрешённой стране — живой запрос
+                live = gemini_live(port)
+                if live == 'unknown':
+                    services[s] = decide_service(s, None, country, block)  # fallback на страну
+                else:
+                    services[s] = live
+            else:
+                svc_cc = service_country(port, s) if cfg['verify_ai'] else None
+                services[s] = decide_service(s, svc_cc, country, block)
+        # ручные исключения (Диана видит блок — дописывает в конфиг)
+        for s in manual.get(node['name'], []):
+            if s in services:
+                services[s] = 'block'
         return {'ok': True, 'cf_loc': cf_loc, 'country': country, 'geo': city,
                 'latency': latency, 'services': services, 'udp': udp_guess,
                 'verified': cfg['verify_ai']}
@@ -396,26 +421,35 @@ def main():
         else:
             testable.append((node, ntype))
 
-    # Параллельное тестирование: каждый воркер — свой Xray-порт (B.4.10).
+    # Параллельное тестирование: пул портов = числу воркеров, каждый
+    # воркер берёт свободный порт (B.4.10). Изоляция по портам делает
+    # стартовый джиттер ненужным — параллелизм настоящий.
     workers = max(1, int(cfg.get('concurrency', 1)))
     log(f'Тестирую {len(testable)} узлов, потоков: {workers}')
 
-    def work(item, idx):
+    import threading
+    port_pool = list(range(SOCKS_PORT, SOCKS_PORT + workers))
+    pool_lock = threading.Lock()
+
+    def work(item):
         node, ntype = item
-        port = SOCKS_PORT + (idx % workers)   # уникальный порт на слот воркера
-        time.sleep(random.uniform(cfg['pause_min_sec'], cfg['pause_max_sec']))  # B.4.9 джиттер
+        with pool_lock:
+            port = port_pool.pop()
         try:
             res = test_node(node, cfg, port)
         except Exception as e:
             res = {'ok': False, 'cf_loc': None, 'country': None, 'geo': '', 'latency': 99999,
                    'error': str(e)[:80], 'services': {}, 'udp': None}
+        finally:
+            with pool_lock:
+                port_pool.append(port)
         return node['display'], ntype, res
 
     from concurrent.futures import ThreadPoolExecutor, as_completed
     done = 0
     total = len(testable)
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        futs = [ex.submit(work, item, i) for i, item in enumerate(testable)]
+        futs = [ex.submit(work, item) for item in testable]
         for fut in as_completed(futs):
             name, ntype, res = fut.result()
             done += 1
