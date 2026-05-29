@@ -1,87 +1,87 @@
 {
   "version": 2,
-  "updated": 1780076185,
-  "updated_iso": "2026-05-29T17:36:25Z",
+  "updated": 1780087575,
+  "updated_iso": "2026-05-29T20:46:15Z",
   "verified": true,
   "stats": {
     "total": 74,
-    "green": 61,
-    "yellow": 0,
-    "red": 13,
+    "green": 60,
+    "yellow": 7,
+    "red": 7,
     "unknown": 0,
-    "countries": 19
+    "countries": 21
   },
   "nodes": {
-    "[Lastdep] 🇷🇺 ✈️ Для Телеграма [VPN]": {
-      "country": null,
-      "geo": "",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
-      "services": {
-        "chatgpt": {
-          "status": "unknown",
-          "score": 0
-        },
-        "claude": {
-          "status": "unknown",
-          "score": 0
-        },
-        "gemini": {
-          "status": "unknown",
-          "score": 0
-        },
-        "grok": {
-          "status": "unknown",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "unknown",
-          "score": 0
-        }
-      }
-    },
-    "[Lastdep] 🇰🇿 Казахстан [VPN]": {
-      "country": null,
-      "geo": "",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
-      "services": {
-        "chatgpt": {
-          "status": "unknown",
-          "score": 0
-        },
-        "claude": {
-          "status": "unknown",
-          "score": 0
-        },
-        "gemini": {
-          "status": "unknown",
-          "score": 0
-        },
-        "grok": {
-          "status": "unknown",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "unknown",
-          "score": 0
-        }
-      }
-    },
-    "[Lastdep] 🇫🇮  ⭐ Финляндия [VPN] #1": {
+    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #5": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇩🇪 🙏 Германия [Обход - МТС]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇪🇪  🟢 Эстония [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
       "services": {
         "chatgpt": {
           "status": "pass",
@@ -105,14 +105,324 @@
         }
       }
     },
-    "[Lastdep] 🇦🇪 ОАЭ [VPN]": {
-      "country": "AE",
-      "geo": "Dubai",
+    "[Lastdep] 🇩🇪  🚀 Германия Напрямую [VPN]": {
+      "country": "FI",
+      "geo": "Helsinki",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 73.7,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇪🇪  ⭐ Эстония [VPN] #1": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇮🇳 Индия [VPN]": {
+      "country": "IN",
+      "geo": "Thane",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇹🇷  ⭐ Турция [VPN] #1": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇳🇱  🟢 Нидерланды [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇫🇮   🚀 Финляндия [VPN]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇸🇪 🕹️Швеция [Игры]": {
+      "country": "FI",
+      "geo": "Frankfurt am Main",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇩🇪  🚀 Германия [VPN] #2": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇫🇮 🕹️ Финляндия [Игры] #1": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇩🇪  ⭐ Германия [VPN] #1": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇳🇬 Нигерия [VPN]": {
+      "country": "NG",
+      "geo": "Lagos",
+      "type": "normal",
+      "udp": true,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
       "services": {
         "chatgpt": {
           "status": "pass",
@@ -133,6 +443,316 @@
         "perplexity": {
           "status": "pass",
           "score": 100
+        }
+      }
+    },
+    "[Lastdep] 🇫🇷 Франция [VPN]": {
+      "country": "FR",
+      "geo": "Paris",
+      "type": "normal",
+      "udp": true,
+      "light": "red",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "block",
+          "score": 0.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇵🇱 🟢 Польша [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇫🇮 🙏 Финляндия [Обход - МТС]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇷🇺 💫 Россия [VPN] #1": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 73.7,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #4": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #5": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇳🇱  🟢 Нидерланды [VPN] #2": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 70.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 70.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 70.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 70.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 70.0
+        }
+      }
+    },
+    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #4": {
+      "country": "RU",
+      "geo": "St Petersburg",
+      "type": "normal",
+      "udp": true,
+      "light": "red",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "block",
+          "score": 30.0
+        },
+        "claude": {
+          "status": "block",
+          "score": 30.0
+        },
+        "gemini": {
+          "status": "block",
+          "score": 30.0
+        },
+        "grok": {
+          "status": "block",
+          "score": 30.0
+        },
+        "perplexity": {
+          "status": "block",
+          "score": 30.0
+        }
+      }
+    },
+    "[Lastdep] 🇵🇱 🙏 Польша [Обход]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100
+        }
+      }
+    },
+    "[Lastdep] 🇨🇭 Швейцария [VPN]": {
+      "country": "CH",
+      "geo": "Bern",
+      "type": "normal",
+      "udp": true,
+      "light": "red",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "block",
+          "score": 0.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
         }
       }
     },
@@ -142,32 +762,94 @@
       "type": "bypass",
       "udp": false,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇷🇺 💫 Россия [VPN] #1": {
+    "[Lastdep] 🇵🇱 🙏 Польша [Обход - МТС]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇰🇿 Казахстан [VPN]": {
+      "country": null,
+      "geo": "",
+      "type": "normal",
+      "udp": true,
+      "light": "red",
+      "health": 0.0,
+      "stability": 15.0,
+      "services": {
+        "chatgpt": {
+          "status": "unknown",
+          "score": 0
+        },
+        "claude": {
+          "status": "unknown",
+          "score": 0
+        },
+        "gemini": {
+          "status": "unknown",
+          "score": 0
+        },
+        "grok": {
+          "status": "unknown",
+          "score": 0
+        },
+        "perplexity": {
+          "status": "unknown",
+          "score": 0
+        }
+      }
+    },
+    "[Lastdep] 🇺🇸 ⭐ США [VPN] #1": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "normal",
@@ -204,400 +886,121 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇩🇪  ⭐ Германия [VPN] #1": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇹🇷  🙏 Турция [Обход]": {
+    "[Lastdep] 🇷🇺 🙏 Россия [Обход]": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "bypass",
       "udp": false,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇺🇸 ⭐ США [VPN] #1": {
-      "country": "FI",
-      "geo": "Helsinki",
+    "[Lastdep] 🇨🇦 Канада [VPN]": {
+      "country": "CA",
+      "geo": "Toronto",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇧🇪 Бельгия [VPN]": {
-      "country": "BE",
-      "geo": "Brussels",
+    "[Lastdep] 🇷🇴 Румыния [VPN]": {
+      "country": "GB",
+      "geo": "Manchester",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #7": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #5": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇳🇱  ⭐ Нидерланды [VPN] #1": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇹🇭 Тайланд [VPN]": {
-      "country": "SG",
-      "geo": "Bangkok",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "block",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇫🇮   🚀 Финляндия [VPN]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇦🇲 Армения [VPN]": {
-      "country": "AM",
-      "geo": "Yerevan",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇫🇷 Франция [VPN]": {
-      "country": "FR",
-      "geo": "Paris",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "block",
-          "score": 0
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇺🇸 🟢 США [VPN] #3": {
-      "country": null,
-      "geo": "",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
-      "services": {
-        "chatgpt": {
-          "status": "unknown",
-          "score": 0
-        },
-        "claude": {
-          "status": "unknown",
-          "score": 0
-        },
-        "gemini": {
-          "status": "unknown",
-          "score": 0
-        },
-        "grok": {
-          "status": "unknown",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "unknown",
-          "score": 0
+          "score": 100.0
         }
       }
     },
@@ -607,245 +1010,59 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇵🇱 🟢 Польша [VPN] #4": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪  🚀 Германия [VPN]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇯🇵 Япония [VPN]": {
-      "country": "JP",
-      "geo": "Tokyo",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇪🇪  🟢 Эстония [VPN] #3": {
-      "country": null,
-      "geo": "",
+    "[Lastdep] 🇸🇬  Сингапур [VPN]": {
+      "country": "SG",
+      "geo": "Singapore",
       "type": "normal",
       "udp": true,
       "light": "red",
-      "health": 0,
-      "stability": 30.0,
-      "services": {
-        "chatgpt": {
-          "status": "unknown",
-          "score": 0
-        },
-        "claude": {
-          "status": "unknown",
-          "score": 0
-        },
-        "gemini": {
-          "status": "unknown",
-          "score": 0
-        },
-        "grok": {
-          "status": "unknown",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "unknown",
-          "score": 0
-        }
-      }
-    },
-    "[Lastdep] 🇳🇱  🟢 Нидерланды [VPN] #2": {
-      "country": "RU",
-      "geo": "St Petersburg",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "block",
-          "score": 0
-        },
-        "claude": {
-          "status": "block",
-          "score": 0
-        },
-        "gemini": {
-          "status": "block",
-          "score": 0
-        },
-        "grok": {
-          "status": "block",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "block",
-          "score": 0
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪 🙏 Германия [Обход - МТС]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
-          "status": "pass",
-          "score": 100
+          "status": "block",
+          "score": 0.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇷🇺 ⚡Россия [VPN]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
@@ -855,280 +1072,156 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇵🇱 🙏 Польша [Обход]": {
-      "country": null,
-      "geo": "",
+    "[Lastdep] 🇬🇧 Великобритания [VPN]": {
+      "country": "RO",
+      "geo": "Bucharest",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇹🇭 Тайланд [VPN]": {
+      "country": "SG",
+      "geo": "Bangkok",
+      "type": "normal",
+      "udp": true,
+      "light": "red",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "block",
+          "score": 0.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇳🇱 🙏 Нидерланды [Обход]": {
+      "country": "FI",
+      "geo": "Helsinki",
       "type": "bypass",
       "udp": false,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "claude": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "gemini": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "grok": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "perplexity": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇵🇱 🟢 Польша [VPN] #3": {
-      "country": "FI",
-      "geo": "Helsinki",
+    "[Lastdep] 🇦🇷  Аргентина [VPN]": {
+      "country": "AR",
+      "geo": "Buenos Aires",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇩🇪  🚀 Германия [VPN] #2": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇦🇹 Австрия [VPN]": {
-      "country": "AT",
-      "geo": "Bremen",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇳🇱  🟢 Нидерланды [VPN] #3": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇨🇭 Швейцария [VPN]": {
-      "country": "CH",
-      "geo": "Bern",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "block",
-          "score": 0
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇷🇺 💫 Россия [VPN] #3": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇨🇿 Чехия [VPN]": {
-      "country": null,
-      "geo": "",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
-      "services": {
-        "chatgpt": {
-          "status": "unknown",
-          "score": 0
-        },
-        "claude": {
-          "status": "unknown",
-          "score": 0
-        },
-        "gemini": {
-          "status": "unknown",
-          "score": 0
-        },
-        "grok": {
-          "status": "unknown",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "unknown",
-          "score": 0
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪  🚀 Германия Напрямую [VPN]": {
+    "[Lastdep] 🇪🇪  🚀 Эстония [VPN]": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "normal",
@@ -1159,189 +1252,127 @@
         }
       }
     },
-    "[Lastdep] 🇳🇬 Нигерия [VPN]": {
-      "country": null,
-      "geo": "",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
-      "services": {
-        "chatgpt": {
-          "status": "unknown",
-          "score": 0
-        },
-        "claude": {
-          "status": "unknown",
-          "score": 0
-        },
-        "gemini": {
-          "status": "unknown",
-          "score": 0
-        },
-        "grok": {
-          "status": "unknown",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "unknown",
-          "score": 0
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #5": {
+    "[Lastdep] 🇺🇸 🟢 США [VPN] #2": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇪🇪 🕹️ Эстония [Игры]": {
-      "country": "EE",
-      "geo": "Tallinn",
+    "[Lastdep] 🇩🇪  🚀 Германия [VPN]": {
+      "country": "FI",
+      "geo": "Helsinki",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇵🇱 🙏 Польша [Обход - МТС]": {
+    "[Lastdep] 🇳🇱  ⭐ Нидерланды [VPN] #1": {
       "country": "FI",
       "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
+      "type": "normal",
+      "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇷🇺 🙏 Россия [Обход]": {
+    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #7": {
       "country": "FI",
       "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
+      "type": "normal",
+      "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇫🇮 🙏 Финляндия [Обход - МТС]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
@@ -1351,90 +1382,214 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇹🇷 🟢 Турция [VPN] #3": {
-      "country": null,
-      "geo": "",
+    "[Lastdep] 🇧🇪 Бельгия [VPN]": {
+      "country": "BE",
+      "geo": "Brussels",
       "type": "normal",
       "udp": true,
-      "light": "red",
-      "health": 0,
-      "stability": 30.0,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "claude": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "gemini": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "grok": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         },
         "perplexity": {
-          "status": "unknown",
-          "score": 0
+          "status": "pass",
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇳🇱 🙏 Нидерланды [Обход]": {
+    "[Lastdep] 🇷🇺 💫 Россия [VPN] #2": {
       "country": "FI",
       "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
+      "type": "normal",
+      "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇦🇲 Армения [VPN]": {
+      "country": "AM",
+      "geo": "Yerevan",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇵🇱 🟢 Польша [VPN] #4": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇷🇺 💫 Россия [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
         }
       }
     },
@@ -1444,8 +1599,132 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇳🇴 Норвегия [VPN]": {
+      "country": "NO",
+      "geo": "Oslo",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇹🇷 🟢 Турция [VPN] #2": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "red",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "block",
+          "score": 30.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇵🇱 ⭐ Польша [VPN] #1": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇹🇷 🟢 Турция [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
       "services": {
         "chatgpt": {
           "status": "pass",
@@ -1475,400 +1754,59 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇵🇱 ⭐ Польша [VPN] #1": {
+    "[Lastdep] 🇫🇮  ⭐ Финляндия [VPN] #1": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇹🇷 🟢 Турция [VPN] #2": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇸🇬  Сингапур [VPN]": {
-      "country": "SG",
-      "geo": "Singapore",
-      "type": "normal",
-      "udp": true,
-      "light": "red",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "block",
-          "score": 0
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #4": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇺🇸 🙏 США [Обход]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇪🇪  🚀 Эстония [VPN]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇳🇴 Норвегия [VPN]": {
-      "country": "NO",
-      "geo": "Oslo",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇷🇺 💫 Россия [VPN] #2": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇮🇳 Индия [VPN]": {
-      "country": "IN",
-      "geo": "Thane",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇪🇪  ⭐ Эстония [VPN] #1": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇩🇪  🟢 Германия [VPN] #3": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇪🇪 🙏 Эстония [Обход]": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "bypass",
-      "udp": false,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
@@ -1878,8 +1816,39 @@
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇷🇺 ✈️ Для Телеграма [VPN]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
       "services": {
         "chatgpt": {
           "status": "pass",
@@ -1903,65 +1872,34 @@
         }
       }
     },
-    "[Lastdep] 🇫🇮 🕹️ Финляндия [Игры] #1": {
-      "country": "FI",
-      "geo": "Helsinki",
+    "[Lastdep] 🇦🇹 Австрия [VPN]": {
+      "country": "AT",
+      "geo": "Bremen",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #4": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
@@ -1971,8 +1909,39 @@
       "type": "bypass",
       "udp": false,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇨🇿 Чехия [VPN]": {
+      "country": "CZ",
+      "geo": "Prague",
+      "type": "normal",
+      "udp": true,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
       "services": {
         "chatgpt": {
           "status": "pass",
@@ -1996,45 +1965,231 @@
         }
       }
     },
-    "[Lastdep] 🇸🇪 🕹️Швеция [Игры]": {
-      "country": "FI",
-      "geo": "Frankfurt am Main",
+    "[Lastdep] 🇯🇵 Япония [VPN]": {
+      "country": "JP",
+      "geo": "Tokyo",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     },
-    "[Lastdep] 🇺🇸 🟢 США [VPN] #2": {
+    "[Lastdep] 🇷🇺 ⚡Россия [VPN]": {
       "country": "FI",
       "geo": "Helsinki",
       "type": "normal",
       "udp": true,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇹🇷  🙏 Турция [Обход]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇪🇪 🕹️ Эстония [Игры]": {
+      "country": "EE",
+      "geo": "Tallinn",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇪🇪 🙏 Эстония [Обход]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇺🇸 🙏 США [Обход]": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "bypass",
+      "udp": false,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇦🇪 ОАЭ [VPN]": {
+      "country": "AE",
+      "geo": "Dubai",
+      "type": "normal",
+      "udp": true,
+      "light": "green",
+      "health": 100.0,
+      "stability": 67.6,
+      "services": {
+        "chatgpt": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "claude": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "gemini": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "grok": {
+          "status": "pass",
+          "score": 100.0
+        },
+        "perplexity": {
+          "status": "pass",
+          "score": 100.0
+        }
+      }
+    },
+    "[Lastdep] 🇺🇸 🟢 США [VPN] #3": {
+      "country": "FI",
+      "geo": "Helsinki",
+      "type": "normal",
+      "udp": true,
+      "light": "yellow",
+      "health": 70.0,
+      "stability": 37.0,
       "services": {
         "chatgpt": {
           "status": "pass",
@@ -2064,183 +2219,28 @@
       "type": "bypass",
       "udp": false,
       "light": "green",
-      "health": 100,
-      "stability": 64.0,
+      "health": 100.0,
+      "stability": 67.6,
       "services": {
         "chatgpt": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "claude": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "gemini": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "grok": {
           "status": "pass",
-          "score": 100
+          "score": 100.0
         },
         "perplexity": {
           "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇦🇷  Аргентина [VPN]": {
-      "country": "AR",
-      "geo": "Buenos Aires",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇬🇧 Великобритания [VPN]": {
-      "country": "RO",
-      "geo": "Bucharest",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇨🇦 Канада [VPN]": {
-      "country": "CA",
-      "geo": "Toronto",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇹🇷  ⭐ Турция [VPN] #1": {
-      "country": "FI",
-      "geo": "Helsinki",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
-        }
-      }
-    },
-    "[Lastdep] 🇷🇴 Румыния [VPN]": {
-      "country": "GB",
-      "geo": "Manchester",
-      "type": "normal",
-      "udp": true,
-      "light": "green",
-      "health": 100,
-      "stability": 64.0,
-      "services": {
-        "chatgpt": {
-          "status": "pass",
-          "score": 100
-        },
-        "claude": {
-          "status": "pass",
-          "score": 100
-        },
-        "gemini": {
-          "status": "pass",
-          "score": 100
-        },
-        "grok": {
-          "status": "pass",
-          "score": 100
-        },
-        "perplexity": {
-          "status": "pass",
-          "score": 100
+          "score": 100.0
         }
       }
     }

@@ -1,90 +1,121 @@
 {
   "[Lastdep] 🇷🇺 ✈️ Для Телеграма [VPN]": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
+    "health": 70.0,
+    "stability": 37.0,
+    "service_scores": {
+      "chatgpt": 100,
+      "claude": 100,
+      "gemini": 100,
+      "grok": 100,
+      "perplexity": 100
+    },
     "samples": [
       {
         "t": 1780075426,
         "ok": false,
         "country": null
+      },
+      {
+        "t": 1780087405,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075426
+    "last_t": 1780087405
   },
   "[Lastdep] 🇰🇿 Казахстан [VPN]": {
-    "health": 0,
-    "stability": 30.0,
+    "health": 0.0,
+    "stability": 15.0,
     "service_scores": {},
     "samples": [
       {
         "t": 1780075437,
         "ok": false,
         "country": null
+      },
+      {
+        "t": 1780087018,
+        "ok": false,
+        "country": null
       }
     ],
-    "last_t": 1780075437
+    "last_t": 1780087018
   },
   "[Lastdep] 🇫🇮  ⭐ Финляндия [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075446,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087367,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075446
+    "last_t": 1780087367
   },
   "[Lastdep] 🇦🇪 ОАЭ [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075459,
         "ok": true,
         "country": "AE"
+      },
+      {
+        "t": 1780087553,
+        "ok": true,
+        "country": "AE"
       }
     ],
-    "last_t": 1780075459
+    "last_t": 1780087553
   },
   "[Lastdep] 🇷🇺 🙏 Россия [Обход - МТС]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075474,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086996,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075474
+    "last_t": 1780086996
   },
   "[Lastdep] 🇷🇺 💫 Россия [VPN] #1": {
     "health": 100.0,
-    "stability": 67.6,
+    "stability": 73.7,
     "service_scores": {
       "chatgpt": 100.0,
       "claude": 100.0,
@@ -102,527 +133,719 @@
         "t": 1780075645,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086918,
+        "ok": true,
+        "country": "FI"
+      },
+      {
+        "t": 1780086936,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075645
+    "last_t": 1780086936
   },
   "[Lastdep] 🇪🇪  🟢 Эстония [VPN] #2": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075493,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087040,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075493
+    "last_t": 1780087040
   },
   "[Lastdep] 🇩🇪  ⭐ Германия [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075501,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086855,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075501
+    "last_t": 1780086855
   },
   "[Lastdep] 🇹🇷  🙏 Турция [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075521,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087508,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075521
+    "last_t": 1780087508
   },
   "[Lastdep] 🇺🇸 ⭐ США [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075530,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087026,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075530
+    "last_t": 1780087026
   },
   "[Lastdep] 🇧🇪 Бельгия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075543,
         "ok": true,
         "country": "BE"
+      },
+      {
+        "t": 1780087229,
+        "ok": true,
+        "country": "BE"
       }
     ],
-    "last_t": 1780075543
+    "last_t": 1780087229
   },
   "[Lastdep] 🇩🇪  🟢 Германия [VPN] #7": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075553,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087203,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075553
+    "last_t": 1780087203
   },
   "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #5": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075564,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086948,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075564
+    "last_t": 1780086948
   },
   "[Lastdep] 🇳🇱  ⭐ Нидерланды [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075573,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087194,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075573
+    "last_t": 1780087194
   },
   "[Lastdep] 🇹🇭 Тайланд [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 0,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 0.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075583,
         "ok": true,
         "country": "SG"
+      },
+      {
+        "t": 1780087124,
+        "ok": true,
+        "country": "SG"
       }
     ],
-    "last_t": 1780075583
+    "last_t": 1780087124
   },
   "[Lastdep] 🇫🇮   🚀 Финляндия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075593,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086818,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075593
+    "last_t": 1780086818
   },
   "[Lastdep] 🇦🇲 Армения [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075602,
         "ok": true,
         "country": "AM"
+      },
+      {
+        "t": 1780087259,
+        "ok": true,
+        "country": "AM"
       }
     ],
-    "last_t": 1780075602
+    "last_t": 1780087259
   },
   "[Lastdep] 🇫🇷 Франция [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 0,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 0.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075610,
         "ok": true,
         "country": "FR"
+      },
+      {
+        "t": 1780086879,
+        "ok": true,
+        "country": "FR"
       }
     ],
-    "last_t": 1780075610
+    "last_t": 1780086879
   },
   "[Lastdep] 🇺🇸 🟢 США [VPN] #3": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
-    "samples": [
-      {
-        "t": 1780075620,
-        "ok": false,
-        "country": null
-      }
-    ],
-    "last_t": 1780075620
-  },
-  "[Lastdep] 🇱🇹 🕹️ Литва [Игры]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 70.0,
+    "stability": 37.0,
     "service_scores": {
       "chatgpt": 100,
       "claude": 100,
       "gemini": 100,
       "grok": 100,
       "perplexity": 100
+    },
+    "samples": [
+      {
+        "t": 1780075620,
+        "ok": false,
+        "country": null
+      },
+      {
+        "t": 1780087562,
+        "ok": true,
+        "country": "FI"
+      }
+    ],
+    "last_t": 1780087562
+  },
+  "[Lastdep] 🇱🇹 🕹️ Литва [Игры]": {
+    "health": 100.0,
+    "stability": 67.6,
+    "service_scores": {
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075627,
         "ok": true,
         "country": "LT"
+      },
+      {
+        "t": 1780087083,
+        "ok": true,
+        "country": "LT"
       }
     ],
-    "last_t": 1780075627
+    "last_t": 1780087083
   },
   "[Lastdep] 🇵🇱 🟢 Польша [VPN] #4": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075636,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087268,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075636
+    "last_t": 1780087268
   },
   "[Lastdep] 🇩🇪  🚀 Германия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075653,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087184,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075653
+    "last_t": 1780087184
   },
   "[Lastdep] 🇯🇵 Япония [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075675,
         "ok": true,
         "country": "JP"
+      },
+      {
+        "t": 1780087486,
+        "ok": true,
+        "country": "JP"
       }
     ],
-    "last_t": 1780075675
+    "last_t": 1780087486
   },
   "[Lastdep] 🇪🇪  🟢 Эстония [VPN] #3": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
+    "health": 70.0,
+    "stability": 37.0,
+    "service_scores": {
+      "chatgpt": 100,
+      "claude": 100,
+      "gemini": 100,
+      "grok": 100,
+      "perplexity": 100
+    },
     "samples": [
       {
         "t": 1780075686,
         "ok": false,
         "country": null
+      },
+      {
+        "t": 1780086756,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075686
+    "last_t": 1780086756
   },
   "[Lastdep] 🇳🇱  🟢 Нидерланды [VPN] #2": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 0,
-      "claude": 0,
-      "gemini": 0,
-      "grok": 0,
-      "perplexity": 0
+      "chatgpt": 70.0,
+      "claude": 70.0,
+      "gemini": 70.0,
+      "grok": 70.0,
+      "perplexity": 70.0
     },
     "samples": [
       {
         "t": 1780075688,
         "ok": true,
         "country": "RU"
+      },
+      {
+        "t": 1780086960,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075688
+    "last_t": 1780086960
   },
   "[Lastdep] 🇩🇪 🙏 Германия [Обход - МТС]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075699,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086747,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075699
+    "last_t": 1780086747
   },
   "[Lastdep] 🇷🇺 ⚡Россия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075708,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087497,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075708
+    "last_t": 1780087497
   },
   "[Lastdep] 🇱🇻 🕹️ Латвия [Игры]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075715,
         "ok": true,
         "country": "LV"
+      },
+      {
+        "t": 1780087103,
+        "ok": true,
+        "country": "LV"
       }
     ],
-    "last_t": 1780075715
+    "last_t": 1780087103
   },
   "[Lastdep] 🇵🇱 🙏 Польша [Обход]": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
-    "samples": [
-      {
-        "t": 1780075726,
-        "ok": false,
-        "country": null
-      }
-    ],
-    "last_t": 1780075726
-  },
-  "[Lastdep] 🇵🇱 🟢 Польша [VPN] #3": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 70.0,
+    "stability": 37.0,
     "service_scores": {
       "chatgpt": 100,
       "claude": 100,
       "gemini": 100,
       "grok": 100,
       "perplexity": 100
+    },
+    "samples": [
+      {
+        "t": 1780075726,
+        "ok": false,
+        "country": null
+      },
+      {
+        "t": 1780086975,
+        "ok": true,
+        "country": "FI"
+      }
+    ],
+    "last_t": 1780086975
+  },
+  "[Lastdep] 🇵🇱 🟢 Польша [VPN] #3": {
+    "health": 100.0,
+    "stability": 67.6,
+    "service_scores": {
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075734,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086899,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075734
+    "last_t": 1780086899
   },
   "[Lastdep] 🇩🇪  🚀 Германия [VPN] #2": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075741,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086835,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075741
+    "last_t": 1780086835
   },
   "[Lastdep] 🇦🇹 Австрия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075752,
         "ok": true,
         "country": "AT"
+      },
+      {
+        "t": 1780087416,
+        "ok": true,
+        "country": "AT"
       }
     ],
-    "last_t": 1780075752
+    "last_t": 1780087416
   },
   "[Lastdep] 🇳🇱  🟢 Нидерланды [VPN] #3": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075770,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086808,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075770
+    "last_t": 1780086808
   },
   "[Lastdep] 🇨🇭 Швейцария [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 0,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 0.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075779,
         "ok": true,
         "country": "CH"
+      },
+      {
+        "t": 1780086984,
+        "ok": true,
+        "country": "CH"
       }
     ],
-    "last_t": 1780075779
+    "last_t": 1780086984
   },
   "[Lastdep] 🇷🇺 💫 Россия [VPN] #3": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
+    "service_scores": {
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
+    },
+    "samples": [
+      {
+        "t": 1780075787,
+        "ok": true,
+        "country": "FI"
+      },
+      {
+        "t": 1780087275,
+        "ok": true,
+        "country": "FI"
+      }
+    ],
+    "last_t": 1780087275
+  },
+  "[Lastdep] 🇨🇿 Чехия [VPN]": {
+    "health": 70.0,
+    "stability": 37.0,
     "service_scores": {
       "chatgpt": 100,
       "claude": 100,
@@ -632,29 +855,21 @@
     },
     "samples": [
       {
-        "t": 1780075787,
-        "ok": true,
-        "country": "FI"
-      }
-    ],
-    "last_t": 1780075787
-  },
-  "[Lastdep] 🇨🇿 Чехия [VPN]": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
-    "samples": [
-      {
         "t": 1780075800,
         "ok": false,
         "country": null
+      },
+      {
+        "t": 1780087462,
+        "ok": true,
+        "country": "CZ"
       }
     ],
-    "last_t": 1780075800
+    "last_t": 1780087462
   },
   "[Lastdep] 🇩🇪  🚀 Германия Напрямую [VPN]": {
     "health": 100.0,
-    "stability": 67.6,
+    "stability": 73.7,
     "service_scores": {
       "chatgpt": 100.0,
       "claude": 100.0,
@@ -672,661 +887,858 @@
         "t": 1780075977,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086766,
+        "ok": true,
+        "country": "FI"
+      },
+      {
+        "t": 1780087324,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075977
+    "last_t": 1780087324
   },
   "[Lastdep] 🇳🇬 Нигерия [VPN]": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
-    "samples": [
-      {
-        "t": 1780075821,
-        "ok": false,
-        "country": null
-      }
-    ],
-    "last_t": 1780075821
-  },
-  "[Lastdep] 🇩🇪  🟢 Германия [VPN] #5": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 70.0,
+    "stability": 37.0,
     "service_scores": {
       "chatgpt": 100,
       "claude": 100,
       "gemini": 100,
       "grok": 100,
       "perplexity": 100
+    },
+    "samples": [
+      {
+        "t": 1780075821,
+        "ok": false,
+        "country": null
+      },
+      {
+        "t": 1780086867,
+        "ok": true,
+        "country": "NG"
+      }
+    ],
+    "last_t": 1780086867
+  },
+  "[Lastdep] 🇩🇪  🟢 Германия [VPN] #5": {
+    "health": 100.0,
+    "stability": 67.6,
+    "service_scores": {
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075830,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086737,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075830
+    "last_t": 1780086737
   },
   "[Lastdep] 🇪🇪 🕹️ Эстония [Игры]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075837,
         "ok": true,
         "country": "EE"
+      },
+      {
+        "t": 1780087515,
+        "ok": true,
+        "country": "EE"
       }
     ],
-    "last_t": 1780075837
+    "last_t": 1780087515
   },
   "[Lastdep] 🇵🇱 🙏 Польша [Обход - МТС]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075847,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087007,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075847
+    "last_t": 1780087007
   },
   "[Lastdep] 🇷🇺 🙏 Россия [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075859,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087052,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075859
+    "last_t": 1780087052
   },
   "[Lastdep] 🇫🇮 🙏 Финляндия [Обход - МТС]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075868,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086911,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075868
+    "last_t": 1780086911
   },
   "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #3": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075878,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087215,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075878
+    "last_t": 1780087215
   },
   "[Lastdep] 🇹🇷 🟢 Турция [VPN] #3": {
-    "health": 0,
-    "stability": 30.0,
-    "service_scores": {},
-    "samples": [
-      {
-        "t": 1780075889,
-        "ok": false,
-        "country": null
-      }
-    ],
-    "last_t": 1780075889
-  },
-  "[Lastdep] 🇳🇱 🙏 Нидерланды [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 70.0,
+    "stability": 37.0,
     "service_scores": {
       "chatgpt": 100,
       "claude": 100,
       "gemini": 100,
       "grok": 100,
       "perplexity": 100
+    },
+    "samples": [
+      {
+        "t": 1780075889,
+        "ok": false,
+        "country": null
+      },
+      {
+        "t": 1780087344,
+        "ok": true,
+        "country": "FI"
+      }
+    ],
+    "last_t": 1780087344
+  },
+  "[Lastdep] 🇳🇱 🙏 Нидерланды [Обход]": {
+    "health": 100.0,
+    "stability": 67.6,
+    "service_scores": {
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075914,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087139,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075914
+    "last_t": 1780087139
   },
   "[Lastdep] 🇩🇪  🟢 Германия [VPN] #6": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075923,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087286,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075923
+    "last_t": 1780087286
   },
   "[Lastdep] 🇵🇱 🟢 Польша [VPN] #5": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075934,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087357,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075934
+    "last_t": 1780087357
   },
   "[Lastdep] 🇵🇱 ⭐ Польша [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075942,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087334,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075942
+    "last_t": 1780087334
   },
   "[Lastdep] 🇹🇷 🟢 Турция [VPN] #2": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 30.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075955,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087312,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075955
+    "last_t": 1780087312
   },
   "[Lastdep] 🇸🇬  Сингапур [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 0,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 0.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075966,
         "ok": true,
         "country": "SG"
+      },
+      {
+        "t": 1780087094,
+        "ok": true,
+        "country": "SG"
       }
     ],
-    "last_t": 1780075966
+    "last_t": 1780087094
   },
   "[Lastdep] 🇩🇪  🟢 Германия [VPN] #4": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 30.0,
+      "claude": 30.0,
+      "gemini": 30.0,
+      "grok": 30.0,
+      "perplexity": 30.0
     },
     "samples": [
       {
         "t": 1780075987,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086963,
+        "ok": true,
+        "country": "RU"
       }
     ],
-    "last_t": 1780075987
+    "last_t": 1780086963
   },
   "[Lastdep] 🇺🇸 🙏 США [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780075999,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087540,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780075999
+    "last_t": 1780087540
   },
   "[Lastdep] 🇪🇪  🚀 Эстония [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076007,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087163,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076007
+    "last_t": 1780087163
   },
   "[Lastdep] 🇳🇴 Норвегия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076016,
         "ok": true,
         "country": "NO"
+      },
+      {
+        "t": 1780087295,
+        "ok": true,
+        "country": "NO"
       }
     ],
-    "last_t": 1780076016
+    "last_t": 1780087295
   },
   "[Lastdep] 🇷🇺 💫 Россия [VPN] #2": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076023,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087235,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076023
+    "last_t": 1780087235
   },
   "[Lastdep] 🇮🇳 Индия [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076034,
         "ok": true,
         "country": "IN"
+      },
+      {
+        "t": 1780086788,
+        "ok": true,
+        "country": "IN"
       }
     ],
-    "last_t": 1780076034
+    "last_t": 1780086788
   },
   "[Lastdep] 🇪🇪  ⭐ Эстония [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076044,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086776,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076044
+    "last_t": 1780086776
   },
   "[Lastdep] 🇩🇪  🟢 Германия [VPN] #3": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076054,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087246,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076054
+    "last_t": 1780087246
   },
   "[Lastdep] 🇪🇪 🙏 Эстония [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076067,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087527,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076067
+    "last_t": 1780087527
   },
   "[Lastdep] 🇵🇱  🚀 Польша [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076079,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087377,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076079
+    "last_t": 1780087377
   },
   "[Lastdep] 🇫🇮 🕹️ Финляндия [Игры] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076085,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086842,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076085
+    "last_t": 1780086842
   },
   "[Lastdep] 🇫🇮  🟢 Финляндия [VPN] #4": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076096,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086929,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076096
+    "last_t": 1780086929
   },
   "[Lastdep] 🇩🇪 🙏 Германия [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076105,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087430,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076105
+    "last_t": 1780087430
   },
   "[Lastdep] 🇸🇪 🕹️Швеция [Игры]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076111,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086826,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076111
+    "last_t": 1780086826
   },
   "[Lastdep] 🇺🇸 🟢 США [VPN] #2": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076122,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087175,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076122
+    "last_t": 1780087175
   },
   "[Lastdep] 🇫🇮 🙏 Финляндия [Обход]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076133,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780087574,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076133
+    "last_t": 1780087574
   },
   "[Lastdep] 🇦🇷  Аргентина [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076147,
         "ok": true,
         "country": "AR"
+      },
+      {
+        "t": 1780087153,
+        "ok": true,
+        "country": "AR"
       }
     ],
-    "last_t": 1780076147
+    "last_t": 1780087153
   },
   "[Lastdep] 🇬🇧 Великобритания [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076156,
         "ok": true,
         "country": "RO"
+      },
+      {
+        "t": 1780087113,
+        "ok": true,
+        "country": "RO"
       }
     ],
-    "last_t": 1780076156
+    "last_t": 1780087113
   },
   "[Lastdep] 🇨🇦 Канада [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076165,
         "ok": true,
         "country": "CA"
+      },
+      {
+        "t": 1780087066,
+        "ok": true,
+        "country": "CA"
       }
     ],
-    "last_t": 1780076165
+    "last_t": 1780087066
   },
   "[Lastdep] 🇹🇷  ⭐ Турция [VPN] #1": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076174,
         "ok": true,
         "country": "FI"
+      },
+      {
+        "t": 1780086796,
+        "ok": true,
+        "country": "FI"
       }
     ],
-    "last_t": 1780076174
+    "last_t": 1780086796
   },
   "[Lastdep] 🇷🇴 Румыния [VPN]": {
-    "health": 100,
-    "stability": 64.0,
+    "health": 100.0,
+    "stability": 67.6,
     "service_scores": {
-      "chatgpt": 100,
-      "claude": 100,
-      "gemini": 100,
-      "grok": 100,
-      "perplexity": 100
+      "chatgpt": 100.0,
+      "claude": 100.0,
+      "gemini": 100.0,
+      "grok": 100.0,
+      "perplexity": 100.0
     },
     "samples": [
       {
         "t": 1780076183,
         "ok": true,
         "country": "GB"
+      },
+      {
+        "t": 1780087075,
+        "ok": true,
+        "country": "GB"
       }
     ],
-    "last_t": 1780076183
+    "last_t": 1780087075
   }
 }
