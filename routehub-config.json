@@ -1,0 +1,21 @@
+{
+  "_comment": "Настройки сервера RouteHub (B.8). routehub-server.py читает файл при каждом запуске.",
+  "verify_ai": true,
+  "pause_min_sec": 0.5,
+  "pause_max_sec": 3.0,
+  "ewma_fresh": 0.7,
+  "ewma_old": 0.3,
+  "stale_hours": 4,
+  "history_len": 20,
+  "block_lists": {
+    "chatgpt":    ["RU","BY","CN","KP","SY","IR","VE","CU","AF","UA"],
+    "claude":     ["RU","BY","CN","KP","SY","IR","VE","CU","AF"],
+    "gemini":     ["RU","BY","CN","KP","SY","IR","CU"],
+    "grok":       ["RU","BY","CN","KP","IR"],
+    "perplexity": ["RU","BY","CN","KP","IR"]
+  },
+  "country_priority": ["DE","FI","NL","PL","EE","SE","US"],
+  "subscriptions": [
+    { "name": "Lastdep", "url_env": "SUBSCRIPTION_URL", "hwid_env": "SUB_HWID", "prefix": "Lastdep" }
+  ]
+}
