@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # =====================================================================
 #  routehub-server.py — серверная часть RouteHub (Этап B плана v3).
-#  Тестирует узлы подписки через Xray: страна, ИИ-доступность, UDP,
-#  гео. Скорость НЕ меряет (её пишет телефон, Этап H).
-#  Считает рейтинг (3 метрики, EWMA, светофор 4 цвета).
-#  Пишет routehub-ratings.json (v2) и routehub-history.json.
-#  Стерильный лог: только имена узлов, НИКОГДА полные URI (репо public).
+#  ИИ-доступность: ОСНОВНОЙ критерий — живой запрос к эндпоинту;
+#  страна — запасной сигнал (при неинформативном ответе -> unknown,
+#  не block, чтобы не выбросить рабочий узел).
+#  Гео: два поля — cf_loc (точка Cloudflare, loc=) и country/geo
+#  (реальный выходной IP, как 2ip).
+#  Скорость НЕ меряет (её пишет телефон, Этап H).
+#  Рейтинг: 3 метрики, EWMA, светофор 4 цвета.
+#  Стерильный лог: только имена узлов, НИКОГДА полные URI.
 # =====================================================================
 
 import os, sys, json, base64, socket, subprocess, tempfile, time, re, random
@@ -14,7 +17,7 @@ from urllib.parse import urlparse, parse_qs, unquote
 try:
     import requests
 except ImportError:
-    print("ОШИБКА: нужен requests. Установите: pip install 'requests[socks]'")
+    print("ОШИБКА: нужен requests. pip install 'requests[socks]'")
     sys.exit(1)
 
 XRAY_BIN    = os.environ.get('XRAY_BIN', './xray')
@@ -23,15 +26,9 @@ HISTORY     = os.environ.get('HISTORY_FILE', 'routehub-history.json')
 CONFIG_FILE = os.environ.get('CONFIG_FILE', 'routehub-config.json')
 SOCKS_PORT  = 10808
 
-# ---- Значения по умолчанию (если routehub-config.json отсутствует) ----
 DEFAULTS = {
-    "verify_ai": True,
-    "pause_min_sec": 0.5,
-    "pause_max_sec": 3.0,
-    "ewma_fresh": 0.7,
-    "ewma_old": 0.3,
-    "stale_hours": 4,
-    "history_len": 20,
+    "verify_ai": True, "pause_min_sec": 0.5, "pause_max_sec": 3.0,
+    "ewma_fresh": 0.7, "ewma_old": 0.3, "stale_hours": 4, "history_len": 20,
     "block_lists": {
         "chatgpt":    ["RU","BY","CN","KP","SY","IR","VE","CU","AF","UA"],
         "claude":     ["RU","BY","CN","KP","SY","IR","VE","CU","AF"],
@@ -40,7 +37,6 @@ DEFAULTS = {
         "perplexity": ["RU","BY","CN","KP","IR"],
     },
     "country_priority": ["DE","FI","NL","PL","EE","SE","US"],
-    # Задел под мульти-подписку. Секреты тянутся из ENV (см. check.yml).
     "subscriptions": [
         {"name": "Lastdep", "url_env": "SUBSCRIPTION_URL",
          "hwid_env": "SUB_HWID", "prefix": "Lastdep"}
@@ -56,8 +52,6 @@ VERIFY_ENDPOINTS = {
 }
 TRACE_URL = 'https://chat.openai.com/cdn-cgi/trace'
 SERVICES  = ['chatgpt', 'claude', 'gemini', 'grok', 'perplexity']
-
-# Маркеры обходных (платных по трафику) узлов — B.4.4: тип сервер ОБЯЗАН читать.
 BYPASS_MARKERS = ['\U0001f64f', 'Обход', 'обход']
 
 
@@ -69,19 +63,17 @@ def load_config():
     cfg = dict(DEFAULTS)
     try:
         with open(CONFIG_FILE, encoding='utf-8') as f:
-            user = json.load(f)
-        cfg.update(user)
+            cfg.update(json.load(f))
         log(f'Конфиг {CONFIG_FILE} загружен.')
     except FileNotFoundError:
         log(f'{CONFIG_FILE} не найден — значения по умолчанию.')
     except Exception as e:
-        log(f'Ошибка чтения {CONFIG_FILE}: {e}; значения по умолчанию.')
+        log(f'Ошибка чтения {CONFIG_FILE}: {e}; по умолчанию.')
     if os.environ.get('VERIFY_AI', '') in ('0', '1'):
         cfg['verify_ai'] = os.environ['VERIFY_AI'] == '1'
     return cfg
 
 
-# ===== ПОДПИСКА =====
 def fetch_subscription(url, hwid):
     headers = {
         'X-HWID': hwid,
@@ -90,7 +82,7 @@ def fetch_subscription(url, hwid):
         'Accept': '*/*', 'Accept-Language': 'ru', 'Connection': 'keep-alive',
         'Host': urlparse(url).netloc,
     }
-    log('Скачиваю подписку…')  # B.4.8 — URL в лог НЕ пишем
+    log('Скачиваю подписку...')
     r = requests.get(url, headers=headers, timeout=30)
     r.raise_for_status()
     body = ''.join(r.text.split())
@@ -107,7 +99,6 @@ def fetch_subscription(url, hwid):
     return r.text
 
 
-# ===== ПАРСЕРЫ ПРОТОКОЛОВ (B.4.3) =====
 def parse_vless(url):
     body = url[len('vless://'):]
     name = 'unknown'
@@ -133,9 +124,6 @@ def parse_vless(url):
 
 
 def parse_unsupported(url, proto):
-    # vmess/trojan/ss — парсер-заглушка: имя берём, но НЕ тестируем
-    # сейчас (все узлы подписки — vless). hysteria2/wireguard —
-    # Xray не протестирует (сверка И7).
     name = 'unknown'
     if '#' in url:
         name = unquote(url.split('#', 1)[1]).strip()
@@ -164,7 +152,6 @@ def is_bypass(name):
     return any(m in name for m in BYPASS_MARKERS)
 
 
-# ===== XRAY =====
 def make_xray_config(node, socks_port):
     stream = {'network': node['type']}
     sec = node['security']
@@ -227,45 +214,58 @@ def extract_trace(body):
     return (loc.group(1) if loc else None), (ip.group(1) if ip else None)
 
 
-def geo_city(ip):
+def geo_full(ip):
     if not ip:
-        return ''
-    try:  # best-effort, прямой запрос (не через прокси)
-        r = requests.get(f'http://ip-api.com/json/{ip}?fields=city,regionName', timeout=6)
+        return None, ''
+    try:
+        r = requests.get('http://ip-api.com/json/' + ip + '?fields=countryCode,city,regionName', timeout=6)
         d = r.json()
-        return (d.get('city') or d.get('regionName') or '').strip()
+        cc = (d.get('countryCode') or '').strip() or None
+        city = (d.get('city') or d.get('regionName') or '').strip()
+        return cc, city
     except Exception:
-        return ''
+        return None, ''
 
 
-def verify_ai(port, svc):
+def live_ai(port, svc):
+    # 'pass' / 'block' (явный регион-запрет) / 'unknown' (нет связи)
     url = VERIFY_ENDPOINTS.get(svc)
-    if not url: return 'unknown'
+    if not url:
+        return 'unknown'
     status, body, _ = via_socks(port, url, timeout=10)
-    if status is None: return 'unknown'
+    if status is None:
+        return 'unknown'
     body = body or ''
     if svc == 'chatgpt':
-        if status == 403 and re.search(r'unsupported_country|not supported', body, re.I): return 'block'
-        if status in (200, 401, 405, 400): return 'pass'
+        if status == 403 and re.search(r'unsupported_country|not supported|VPN', body, re.I): return 'block'
+        if status in (200, 401, 403, 405, 400): return 'pass'
     elif svc == 'claude':
         if status == 451: return 'block'
-        if status == 403 and re.search(r'region|country|unsupported', body, re.I): return 'block'
-        if status in (200, 401, 400): return 'pass'
+        if status == 403 and re.search(r'region|country|unsupported|unavailable', body, re.I): return 'block'
+        if status in (200, 401, 403, 400): return 'pass'
     elif svc == 'gemini':
-        if re.search(r'not (currently )?supported in your (country|region)', body, re.I): return 'block'
-        if status == 200: return 'pass'
+        if re.search(r'not (currently )?(available|supported) in your (country|region)', body, re.I): return 'block'
+        if status in (200, 301, 302): return 'pass'
     elif svc == 'grok':
-        if status in (403, 451): return 'block'
-        if status == 200: return 'pass'
+        if status == 451: return 'block'
+        if status == 403 and re.search(r'region|country|unavailable', body, re.I): return 'block'
+        if status in (200, 401, 403): return 'pass'
     elif svc == 'perplexity':
-        if status in (403, 451): return 'block'
-        if status in (200, 401): return 'pass'
+        if status == 451: return 'block'
+        if status == 403 and re.search(r'region|country|unavailable', body, re.I): return 'block'
+        if status in (200, 401, 403): return 'pass'
+    return 'unknown'
+
+
+def decide_service(svc, live, country, blocklist):
+    if live in ('pass', 'block'):
+        return live
+    if country and country in blocklist.get(svc, []):
+        return 'block'
     return 'unknown'
 
 
 def test_node(node, cfg):
-    # UDP-флаг — эвристика (реальное подтверждение звонков — A.8, NodeSelect).
-    # ws через CDN (Обход) UDP не несёт; vless tcp/grpc обычно поддерживает.
     udp_guess = node['type'] != 'ws'
     xcfg = make_xray_config(node, SOCKS_PORT)
     with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
@@ -275,25 +275,25 @@ def test_node(node, cfg):
         proc = subprocess.Popen([XRAY_BIN, 'run', '-c', cfg_path],
                                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         if not wait_port(SOCKS_PORT, timeout=8):
-            return {'ok': False, 'country': None, 'latency': 99999,
+            return {'ok': False, 'cf_loc': None, 'country': None, 'geo': '', 'latency': 99999,
                     'error': 'xray-port-timeout', 'services': {}, 'udp': udp_guess}
         time.sleep(0.5)
         status, body, latency = via_socks(SOCKS_PORT, TRACE_URL, timeout=8)
         if status is None:
-            return {'ok': False, 'country': None, 'latency': latency,
+            return {'ok': False, 'cf_loc': None, 'country': None, 'geo': '', 'latency': latency,
                     'error': body[:80], 'services': {}, 'udp': udp_guess}
-        country, ip = extract_trace(body)
-        if not country:
-            return {'ok': False, 'country': None, 'latency': latency,
-                    'error': 'no-loc', 'services': {}, 'udp': udp_guess}
+        cf_loc, out_ip = extract_trace(body)
+        country, city = geo_full(out_ip)
+        if country is None:
+            country = cf_loc
         block = cfg['block_lists']
-        services = {s: ('block' if country in block.get(s, []) else 'pass') for s in SERVICES}
-        if cfg['verify_ai']:
-            for s in SERVICES:
-                if services[s] == 'pass' and verify_ai(SOCKS_PORT, s) == 'block':
-                    services[s] = 'block'
-        return {'ok': True, 'country': country, 'geo': geo_city(ip), 'latency': latency,
-                'services': services, 'udp': udp_guess, 'verified': cfg['verify_ai']}
+        services = {}
+        for s in SERVICES:
+            live = live_ai(SOCKS_PORT, s) if cfg['verify_ai'] else 'unknown'
+            services[s] = decide_service(s, live, country, block)
+        return {'ok': True, 'cf_loc': cf_loc, 'country': country, 'geo': city,
+                'latency': latency, 'services': services, 'udp': udp_guess,
+                'verified': cfg['verify_ai']}
     finally:
         if proc:
             proc.terminate()
@@ -303,7 +303,6 @@ def test_node(node, cfg):
         except OSError: pass
 
 
-# ===== РЕЙТИНГ: EWMA + светофор (B.5) =====
 def ewma(old, fresh, wf, wo):
     if old is None: return fresh
     return round(wf * fresh + wo * old, 1)
@@ -312,9 +311,7 @@ def ewma(old, fresh, wf, wo):
 def update_metrics(name, res, hist, cfg):
     h = hist.get(name, {})
     wf, wo = cfg['ewma_fresh'], cfg['ewma_old']
-    health_inst = 100 if res.get('ok') else 0
-    health = ewma(h.get('health'), health_inst, wf, wo)
-    # stability — медленно растёт, резко падает (B.5)
+    health = ewma(h.get('health'), 100 if res.get('ok') else 0, wf, wo)
     prev_stab = h.get('stability')
     if res.get('ok'):
         stability = round(0.9 * (prev_stab if prev_stab is not None else 60) + 0.1 * 100, 1)
@@ -324,9 +321,8 @@ def update_metrics(name, res, hist, cfg):
     svc_status = res.get('services', {})
     for s in SERVICES:
         st = svc_status.get(s)
-        if st == 'pass':   svc_scores[s] = ewma(svc_scores.get(s), 100, wf, wo)
-        elif st == 'block':svc_scores[s] = ewma(svc_scores.get(s), 0, wf, wo)
-        # unknown / отсутствует — балл сохраняем
+        if st == 'pass':    svc_scores[s] = ewma(svc_scores.get(s), 100, wf, wo)
+        elif st == 'block': svc_scores[s] = ewma(svc_scores.get(s), 0, wf, wo)
     samples = (h.get('samples', []) + [{'t': int(time.time()), 'ok': bool(res.get('ok')),
                'country': res.get('country')}])[-cfg['history_len']:]
     hist[name] = {'health': health, 'stability': stability,
@@ -366,54 +362,54 @@ def main():
         text = fetch_subscription(url, hwid)
         parsed = parse_subscription(text)
         for n in parsed:
-            n['display'] = f"[{prefix}] {n['name']}"   # B.4.2 префикс
+            n['display'] = f"[{prefix}] {n['name']}"
         nodes.extend(parsed)
 
     if not nodes:
         log('ОШИБКА: узлов не найдено.'); sys.exit(1)
     log(f'Узлов всего: {len(nodes)}')
 
-    random.shuffle(nodes)  # B.4.9
+    random.shuffle(nodes)
     results = {}
     counts = {'green': 0, 'yellow': 0, 'red': 0, 'unknown': 0}
     countries = set()
 
     for i, node in enumerate(nodes, 1):
         name = node['display']
-        ntype = 'bypass' if is_bypass(node['name']) else 'normal'  # B.4.4 / B.4.7
+        ntype = 'bypass' if is_bypass(node['name']) else 'normal'
         if not node.get('tested', False):
-            entry = {'country': None, 'type': ntype, 'tested': False,
-                     'reason': node.get('reason', 'не тестируется'),
-                     'light': 'unknown', 'health': None, 'stability': None,
-                     'udp': None, 'services': {}}
-            results[name] = entry; counts['unknown'] += 1
-            log(f'  [{i}/{len(nodes)}] x {name[:42]} -> {entry["reason"][:40]}')
+            results[name] = {'country': None, 'cf_loc': None, 'geo': '', 'type': ntype,
+                             'tested': False, 'reason': node.get('reason', 'не тестируется'),
+                             'light': 'unknown', 'health': None, 'stability': None,
+                             'udp': None, 'services': {}}
+            counts['unknown'] += 1
+            log(f'  [{i}/{len(nodes)}] x {name[:42]} -> {results[name]["reason"][:40]}')
             continue
         try:
             res = test_node(node, cfg)
         except Exception as e:
-            res = {'ok': False, 'country': None, 'latency': 99999,
+            res = {'ok': False, 'cf_loc': None, 'country': None, 'geo': '', 'latency': 99999,
                    'error': str(e)[:80], 'services': {}, 'udp': None}
         health, stability, svc_scores = update_metrics(name, res, hist, cfg)
         svc_status = res.get('services', {})
         light = light_of(health, stability, svc_status, hist[name]['last_t'], cfg)
         counts[light] = counts.get(light, 0) + 1
-        if res.get('ok'): countries.add(res['country'])
+        if res.get('ok') and res.get('country'): countries.add(res['country'])
         results[name] = {
-            'country': res.get('country'), 'geo': res.get('geo', ''),
-            'type': ntype, 'udp': res.get('udp'),
+            'country': res.get('country'), 'cf_loc': res.get('cf_loc'),
+            'geo': res.get('geo', ''), 'type': ntype, 'udp': res.get('udp'),
             'light': light, 'health': health, 'stability': stability,
             'services': {s: {'status': svc_status.get(s, 'unknown'),
                              'score': svc_scores.get(s, 0)} for s in SERVICES},
         }
-        log(f'  [{i}/{len(nodes)}] {light} {name[:42]} -> '
-            f'{res.get("country") or res.get("error","?")} '
-            f'h{health} s{stability} ({res.get("latency","?")}ms)')
-        time.sleep(random.uniform(cfg['pause_min_sec'], cfg['pause_max_sec']))  # B.4.9
+        log(f'  [{i}/{len(nodes)}] {light} {name[:38]} -> '
+            f'cf={res.get("cf_loc")} real={res.get("country")} '
+            f'ai={"".join((svc_status.get(s,"?") or "?")[0] for s in SERVICES)} '
+            f'h{health} ({res.get("latency","?")}ms)')
+        time.sleep(random.uniform(cfg['pause_min_sec'], cfg['pause_max_sec']))
 
     output = {
-        'version': 2,
-        'updated': int(time.time()),
+        'version': 2, 'updated': int(time.time()),
         'updated_iso': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'verified': cfg['verify_ai'],
         'stats': {'total': len(nodes), 'green': counts['green'],
@@ -426,7 +422,7 @@ def main():
     with open(HISTORY, 'w', encoding='utf-8') as f:
         json.dump(hist, f, ensure_ascii=False, indent=2)
     log(f"Готово за {int(time.time()-t0)}с. "
-        f"green{counts['green']} yellow{counts['yellow']} red{counts['red']} unknown{counts['unknown']}")
+        f"g{counts['green']} y{counts['yellow']} r{counts['red']} u{counts['unknown']}")
 
 
 if __name__ == '__main__':
