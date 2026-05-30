@@ -7,8 +7,9 @@
 #   - Claude/Grok/Perplexity: страна по их cdn-cgi/trace (сервис гейтит
 #     по ней; их probe-эндпоинты не отличают гео-блок от no-auth).
 #   - Любой при сбое -> fallback на блок-лист стран; manual_block в конфиге.
-#  Гео: cf_loc (точка Cloudflare) и country/geo — РЕАЛЬНЫЙ выходной IP
-#  через КАСКАД из 4 гео-сервисов (страна+город, резерв при недоступности).
+#  Гео: ГОЛОСОВАНИЕ независимых источников (routehub-geo.py) — страна
+#  ~99% + уверенность, тип IP (datacenter/vpn/residential), город из
+#  reverse-DNS/MaxMind. MaxMind офлайн опционален (GeoLite2-*.mmdb).
 #  Нейтральный trace (cloudflare.com) — блок одного ИИ не валит весь узел.
 #  Параллельность (concurrency): пул Xray-портов. Скорость НЕ меряет.
 #  Рейтинг: EWMA, светофор 4 цвета. Лог стерильный: имена, без URI.
@@ -16,6 +17,12 @@
 
 import os, sys, json, base64, socket, subprocess, tempfile, time, re, random
 from urllib.parse import urlparse, parse_qs, unquote
+
+# модуль консолидации гео (routehub-geo.py рядом)
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location("routehub_geo",
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "routehub-geo.py"))
+ROUTEHUB_GEO = _ilu.module_from_spec(_spec); _spec.loader.exec_module(ROUTEHUB_GEO)
 
 try:
     import requests
@@ -217,34 +224,67 @@ def extract_trace(body):
     return (loc.group(1) if loc else None), (ip.group(1) if ip else None)
 
 
-# Каскад гео-сервисов (страна РЕАЛЬНОГО выходного IP, как 2ip). Запрос
-# ЧЕРЕЗ туннель. Несколько источников: если один недоступен или не дал
-# город — берём следующий. Возвращаем первый со страной И городом,
-# а если города нигде нет — первую страну.
-GEO_APIS = [
-    ('https://api.ip.sb/geoip',                               'country_code', 'city'),
-    ('http://ip-api.com/json/?fields=countryCode,city,status', 'countryCode', 'city'),
-    ('https://ipwho.is/',                                     'country_code', 'city'),
-    ('https://ipinfo.io/json',                                'country',      'city'),
+# Источники для голосования по стране (через туннель). ip.sb/geojs НЕ
+# включаем как отдельные голоса — они берут данные из MaxMind (коррелируют).
+GEO_SOURCES = [
+    ('ip-api', 'http://ip-api.com/json/?fields=status,countryCode,city,isp,org,as,hosting,proxy,mobile'),
+    ('ipwho',  'https://ipwho.is/'),
+    ('ipinfo', 'https://ipinfo.io/json'),
+    ('ipapi',  'https://ipapi.co/json/'),
+    ('freeip', 'https://free.freeipapi.com/api/json/'),
 ]
 
-def geo_via_proxy(port):
-    best_cc = None
-    for url, kc, kk in GEO_APIS:
-        status, body, _ = via_socks(port, url, timeout=8)
+# MaxMind офлайн (если базы скачаны в Actions). Грузится один раз.
+_MM = {'city': None, 'asn': None, 'loaded': False}
+def _load_maxmind():
+    if _MM['loaded']:
+        return
+    _MM['loaded'] = True
+    try:
+        import geoip2.database
+        if os.path.exists('GeoLite2-City.mmdb'):
+            _MM['city'] = geoip2.database.Reader('GeoLite2-City.mmdb')
+        if os.path.exists('GeoLite2-ASN.mmdb'):
+            _MM['asn'] = geoip2.database.Reader('GeoLite2-ASN.mmdb')
+    except Exception as e:
+        log(f'MaxMind недоступен: {e}')
+
+def maxmind_lookup(ip):
+    _load_maxmind()
+    if not ip:
+        return None
+    cc = city = org = None; asn = None
+    try:
+        if _MM['city']:
+            r = _MM['city'].city(ip)
+            cc = r.country.iso_code; city = r.city.name
+    except Exception:
+        pass
+    try:
+        if _MM['asn']:
+            a = _MM['asn'].asn(ip)
+            asn = a.autonomous_system_number; org = a.autonomous_system_organization
+    except Exception:
+        pass
+    return {'cc': cc, 'city': city, 'asn': asn, 'org': org} if (cc or asn) else None
+
+
+def geo_via_proxy(port, out_ip=None, cf_loc=None):
+    # Собираем независимые источники через туннель, нормализуем, консолидируем.
+    sources = []
+    for src_name, url in GEO_SOURCES:
+        full = url + (out_ip if (out_ip and url.endswith('/')) else '')
+        status, body, _ = via_socks(port, full, timeout=8)
         if not (status and body):
             continue
-        try:
-            d = json.loads(body)
-        except Exception:
-            continue
-        cc = (d.get(kc) or '').strip().upper() or None
-        city = (d.get(kk) or '').strip()
-        if cc and city:
-            return cc, city          # полный результат — сразу
-        if cc and not best_cc:
-            best_cc = cc             # страна есть, города нет — запомним
-    return best_cc, ''
+        norm = ROUTEHUB_GEO.parse_geo_response(url, body)
+        if norm:
+            norm['_src'] = src_name
+            sources.append(norm)
+    maxmind = maxmind_lookup(out_ip)
+    ptr = ROUTEHUB_GEO.reverse_dns(out_ip) if out_ip else ''
+    res = ROUTEHUB_GEO.consolidate(sources, cf_loc, maxmind, ptr)
+    return res   # dict: country, country_conf, city, city_conf, ip_type, asn, org
 
 
 def chatgpt_live(port):
@@ -328,10 +368,10 @@ def test_node(node, cfg, port=SOCKS_PORT):
         if status is None:
             return {'ok': False, 'cf_loc': None, 'country': None, 'geo': '', 'latency': latency,
                     'error': body[:80], 'services': {}, 'udp': udp_guess}
-        cf_loc, _out_ip = extract_trace(body)
-        country, city = geo_via_proxy(port)
-        if country is None:
-            country = cf_loc
+        cf_loc, out_ip = extract_trace(body)
+        geo = geo_via_proxy(port, out_ip, cf_loc)
+        country = geo['country'] or cf_loc
+        city = geo['city']
         block = cfg['block_lists']
         manual = cfg.get('manual_block', {})
         services = {}
@@ -352,7 +392,10 @@ def test_node(node, cfg, port=SOCKS_PORT):
         for s in manual.get(node['name'], []):
             if s in services:
                 services[s] = 'block'
-        return {'ok': True, 'cf_loc': cf_loc, 'country': country, 'geo': city,
+        return {'ok': True, 'cf_loc': cf_loc, 'out_ip': out_ip,
+                'country': country, 'country_conf': geo['country_conf'],
+                'geo': city, 'city_conf': geo['city_conf'],
+                'ip_type': geo['ip_type'], 'asn': geo['asn'], 'org': geo['org'],
                 'latency': latency, 'services': services, 'udp': udp_guess,
                 'verified': cfg['verify_ai']}
     finally:
@@ -484,14 +527,18 @@ def main():
             counts[light] = counts.get(light, 0) + 1
             if res.get('ok') and res.get('country'): countries.add(res['country'])
             results[name] = {
-                'country': res.get('country'), 'cf_loc': res.get('cf_loc'),
-                'geo': res.get('geo', ''), 'type': ntype, 'udp': res.get('udp'),
+                'country': res.get('country'), 'country_conf': res.get('country_conf'),
+                'cf_loc': res.get('cf_loc'), 'geo': res.get('geo', ''),
+                'city_conf': res.get('city_conf'), 'ip_type': res.get('ip_type'),
+                'asn': res.get('asn'), 'org': res.get('org'),
+                'type': ntype, 'udp': res.get('udp'),
                 'light': light, 'health': health, 'stability': stability,
                 'services': {s: {'status': svc_status.get(s, 'unknown'),
                                  'score': svc_scores.get(s, 0)} for s in SERVICES},
             }
-            log(f'  [{done}/{total}] {light} {name[:36]} -> '
-                f'cf={res.get("cf_loc")} real={res.get("country")} city={res.get("geo","")[:14]} '
+            log(f'  [{done}/{total}] {light} {name[:34]} -> '
+                f'{res.get("country")}({res.get("country_conf")}) {res.get("geo","")[:12]} '
+                f'{res.get("ip_type","")} '
                 f'ai={"".join((svc_status.get(s,"?") or "?")[0] for s in SERVICES)} '
                 f'h{health} ({res.get("latency","?")}ms)')
 
