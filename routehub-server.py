@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # =====================================================================
 #  routehub-server.py — серверная часть RouteHub (Этап B плана v3).
-#  ИИ-доступность:
-#   - ChatGPT/Claude/Grok/Perplexity: страна, которую видит САМ сервис
-#     (его cdn-cgi/trace -> loc=); сверка с блок-листом этого сервиса.
-#   - Gemini: ЖИВОЙ запрос к gemini.google.com/app (Google блокирует по
-#     IP даже в разрешённой стране); детект страницы недоступности.
-#   - Ручные исключения manual_block в конфиге (Диана видит блок — дописывает).
+#  ИИ-доступность — ФАКТИЧЕСКАЯ проверка доступа, не блок-лист стран:
+#   - ChatGPT: POST chat-requirements (200+token=pass, 403 unsupported=block).
+#   - Gemini:  живая страница /app (детект «not available»).
+#   - Claude/Grok/Perplexity: страна по их cdn-cgi/trace (сервис гейтит
+#     по ней; их probe-эндпоинты не отличают гео-блок от no-auth).
+#   - Любой при сбое -> fallback на блок-лист стран; manual_block в конфиге.
 #  Гео: cf_loc (точка Cloudflare) и country/geo — РЕАЛЬНЫЙ выходной IP
-#  через туннель (как 2ip), без rate-limit.
-#  Тестирование параллельное (concurrency, B.4.10): пул Xray-портов.
-#  Скорость НЕ меряет. Рейтинг: EWMA, светофор 4 цвета.
-#  Стерильный лог: только имена узлов, НИКОГДА полные URI.
+#  через КАСКАД из 4 гео-сервисов (страна+город, резерв при недоступности).
+#  Нейтральный trace (cloudflare.com) — блок одного ИИ не валит весь узел.
+#  Параллельность (concurrency): пул Xray-портов. Скорость НЕ меряет.
+#  Рейтинг: EWMA, светофор 4 цвета. Лог стерильный: имена, без URI.
 # =====================================================================
 
 import os, sys, json, base64, socket, subprocess, tempfile, time, re, random
@@ -47,16 +47,13 @@ DEFAULTS = {
     ],
 }
 
-# Для каждого ИИ узнаём страну, которую видит ЕГО собственный Cloudflare
-# (cdn-cgi/trace -> loc=). Сервис гейтит по этой стране, поэтому это
-# самый точный сигнал. У Gemini (Google) нет cdn-cgi -> живой запрос.
+# Страна, которую видит сам сервис (его cdn-cgi/trace -> loc=).
 SERVICE_TRACE = {
-    'chatgpt':    'https://chatgpt.com/cdn-cgi/trace',
     'claude':     'https://claude.ai/cdn-cgi/trace',
     'grok':       'https://grok.com/cdn-cgi/trace',
     'perplexity': 'https://www.perplexity.ai/cdn-cgi/trace',
 }
-TRACE_URL = 'https://chat.openai.com/cdn-cgi/trace'
+TRACE_URL = 'https://www.cloudflare.com/cdn-cgi/trace'  # нейтральный, не ИИ-домен
 SERVICES  = ['chatgpt', 'claude', 'gemini', 'grok', 'perplexity']
 BYPASS_MARKERS = ['\U0001f64f', 'Обход', 'обход']
 
@@ -205,7 +202,7 @@ def via_socks(port, url, timeout=8):
     proxies = {'http': f'socks5h://127.0.0.1:{port}', 'https': f'socks5h://127.0.0.1:{port}'}
     headers = {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) '
                'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
-               'Cache-Control': 'no-cache'}
+               'Accept-Language': 'en-US,en', 'Cache-Control': 'no-cache'}
     t0 = time.time()
     try:
         r = requests.get(url, proxies=proxies, headers=headers, timeout=timeout, allow_redirects=True)
@@ -220,24 +217,55 @@ def extract_trace(body):
     return (loc.group(1) if loc else None), (ip.group(1) if ip else None)
 
 
+# Каскад гео-сервисов (страна РЕАЛЬНОГО выходного IP, как 2ip). Запрос
+# ЧЕРЕЗ туннель. Несколько источников: если один недоступен или не дал
+# город — берём следующий. Возвращаем первый со страной И городом,
+# а если города нигде нет — первую страну.
+GEO_APIS = [
+    ('https://api.ip.sb/geoip',                               'country_code', 'city'),
+    ('http://ip-api.com/json/?fields=countryCode,city,status', 'countryCode', 'city'),
+    ('https://ipwho.is/',                                     'country_code', 'city'),
+    ('https://ipinfo.io/json',                                'country',      'city'),
+]
+
 def geo_via_proxy(port):
-    # Страна РЕАЛЬНОГО выходного IP, как её видит внешний наблюдатель (как 2ip):
-    # запрос идёт ЧЕРЕЗ сам туннель. Лимит не бьётся — у каждого узла свой выходной IP.
-    for url, kc, kk in (
-        ('https://api.ip.sb/geoip', 'country_code', 'city'),
-        ('https://ipinfo.io/json',  'country',      'city'),
-    ):
+    best_cc = None
+    for url, kc, kk in GEO_APIS:
         status, body, _ = via_socks(port, url, timeout=8)
-        if status and body:
-            try:
-                d = json.loads(body)
-                cc = (d.get(kc) or '').strip().upper() or None
-                city = (d.get(kk) or '').strip()
-                if cc:
-                    return cc, city
-            except Exception:
-                pass
-    return None, ''
+        if not (status and body):
+            continue
+        try:
+            d = json.loads(body)
+        except Exception:
+            continue
+        cc = (d.get(kc) or '').strip().upper() or None
+        city = (d.get(kk) or '').strip()
+        if cc and city:
+            return cc, city          # полный результат — сразу
+        if cc and not best_cc:
+            best_cc = cc             # страна есть, города нет — запомним
+    return best_cc, ''
+
+
+def chatgpt_live(port):
+    # Фактическая проверка ChatGPT: POST chat-requirements. Из рабочего
+    # региона -> 200 + token; из заблокированного -> 403 unsupported_country.
+    # Проверяет ДОСТУП, а не страну (ловит зарубежные узлы с «ru» в имени).
+    proxies = {'http': f'socks5h://127.0.0.1:{port}', 'https': f'socks5h://127.0.0.1:{port}'}
+    headers = {'Content-Type': 'application/json',
+               'Oai-Device-Id': '00000000-0000-4000-8000-000000000000',
+               'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) '
+               'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1'}
+    try:
+        r = requests.post('https://chatgpt.com/backend-anon/sentinel/chat-requirements',
+                          headers=headers, json={}, proxies=proxies, timeout=12)
+    except Exception:
+        return 'unknown'
+    if r.status_code == 200 and ('token' in r.text or 'persona' in r.text):
+        return 'pass'
+    if r.status_code == 403 and re.search(r'unsupported_country|not available|VPN', r.text, re.I):
+        return 'block'
+    return 'unknown'
 
 
 def service_country(port, svc):
@@ -262,22 +290,21 @@ GEMINI_BLOCK_RE = re.compile(
 
 def gemini_live(port):
     # Прямая проверка Gemini: 'block' если страница говорит о недоступности,
-    # 'pass' если приложение грузится, 'unknown' при сетевой ошибке.
+    # 'pass' если приложение грузится (есть bard-frontend), 'unknown' при сбое.
     status, body, _ = via_socks(port, 'https://gemini.google.com/app', timeout=12)
     if status is None:
         return 'unknown'
     body = body or ''
     if GEMINI_BLOCK_RE.search(body):
         return 'block'
-    if status == 200 and ('bard-frontend' in body or 'gemini' in body.lower()):
+    if status == 200 and ('bard-frontend' in body or 'WIZ_global_data' in body):
         return 'pass'
     return 'unknown'
 
 
-def decide_service(svc, svc_cc, fallback_cc, blocklist):
-    # Для сервисов с cdn-cgi/trace: страна, которую видит сам сервис; иначе
-    # страна выходного IP. block если страна в блок-листе; pass если страна
-    # известна и НЕ в блоке; unknown если страну определить не удалось.
+def decide_by_country(svc, svc_cc, fallback_cc, blocklist):
+    # block если страна в блок-листе; pass если страна известна и НЕ в блоке;
+    # unknown если страну определить не удалось.
     cc = svc_cc or fallback_cc
     if not cc:
         return 'unknown'
@@ -306,19 +333,21 @@ def test_node(node, cfg, port=SOCKS_PORT):
         if country is None:
             country = cf_loc
         block = cfg['block_lists']
-        manual = cfg.get('manual_block', {})   # {имя_узла: [сервисы]} — ручные исключения
+        manual = cfg.get('manual_block', {})
         services = {}
         for s in SERVICES:
-            if s == 'gemini' and cfg['verify_ai']:
-                # Gemini блокирует по IP даже в разрешённой стране — живой запрос
+            if not cfg['verify_ai']:
+                services[s] = decide_by_country(s, None, country, block)
+                continue
+            if s == 'chatgpt':
+                live = chatgpt_live(port)
+                services[s] = live if live != 'unknown' else decide_by_country(s, None, country, block)
+            elif s == 'gemini':
                 live = gemini_live(port)
-                if live == 'unknown':
-                    services[s] = decide_service(s, None, country, block)  # fallback на страну
-                else:
-                    services[s] = live
+                services[s] = live if live != 'unknown' else decide_by_country(s, None, country, block)
             else:
-                svc_cc = service_country(port, s) if cfg['verify_ai'] else None
-                services[s] = decide_service(s, svc_cc, country, block)
+                svc_cc = service_country(port, s)
+                services[s] = decide_by_country(s, svc_cc, country, block)
         # ручные исключения (Диана видит блок — дописывает в конфиг)
         for s in manual.get(node['name'], []):
             if s in services:
@@ -406,7 +435,6 @@ def main():
     counts = {'green': 0, 'yellow': 0, 'red': 0, 'unknown': 0}
     countries = set()
 
-    # untested (vmess/hysteria/…) — сразу в результат, без сети
     testable = []
     for node in nodes:
         name = node['display']
@@ -421,9 +449,6 @@ def main():
         else:
             testable.append((node, ntype))
 
-    # Параллельное тестирование: пул портов = числу воркеров, каждый
-    # воркер берёт свободный порт (B.4.10). Изоляция по портам делает
-    # стартовый джиттер ненужным — параллелизм настоящий.
     workers = max(1, int(cfg.get('concurrency', 1)))
     log(f'Тестирую {len(testable)} узлов, потоков: {workers}')
 
@@ -453,7 +478,6 @@ def main():
         for fut in as_completed(futs):
             name, ntype, res = fut.result()
             done += 1
-            # метрики/история — в главном потоке (не потокобезопасно)
             health, stability, svc_scores = update_metrics(name, res, hist, cfg)
             svc_status = res.get('services', {})
             light = light_of(health, stability, svc_status, hist[name]['last_t'], cfg)
@@ -467,7 +491,7 @@ def main():
                                  'score': svc_scores.get(s, 0)} for s in SERVICES},
             }
             log(f'  [{done}/{total}] {light} {name[:36]} -> '
-                f'cf={res.get("cf_loc")} real={res.get("country")} '
+                f'cf={res.get("cf_loc")} real={res.get("country")} city={res.get("geo","")[:14]} '
                 f'ai={"".join((svc_status.get(s,"?") or "?")[0] for s in SERVICES)} '
                 f'h{health} ({res.get("latency","?")}ms)')
 
