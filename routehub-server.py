@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # =====================================================================
 #  routehub-server.py — серверная часть RouteHub (Этап B плана v3).
-#  ИИ-доступность — ФАКТИЧЕСКАЯ проверка доступа, не блок-лист стран:
-#   - ChatGPT: POST chat-requirements (200+token=pass, 403 unsupported=block).
-#   - Gemini:  живая страница /app (детект «not available»).
-#   - Claude/Grok/Perplexity: страна по их cdn-cgi/trace (сервис гейтит
-#     по ней; их probe-эндпоинты не отличают гео-блок от no-auth).
+#  ИИ-доступность (единый каркас, всё анонимно):
+#   - ChatGPT: фактический probe — POST chat-requirements
+#     (200+token=pass, 403 unsupported_country=block). Достоверно.
+#   - Claude/Grok/Perplexity: страна по их cdn-cgi/trace + блок-лист
+#     (их probe-эндпоинты не отличают гео-блок от no-auth).
+#   - Gemini: по стране (блок-лист). Живой детект бесполезен — /app
+#     отдаёт 200 с bard-frontend в ЛЮБОМ регионе, блок виден только в
+#     авторизованной сессии (это проверяет телефон, Этап D).
 #   - Любой при сбое -> fallback на блок-лист стран; manual_block в конфиге.
 #  Гео: ГОЛОСОВАНИЕ независимых источников (routehub-geo.py) — страна
 #  ~99% + уверенность, тип IP (datacenter/vpn/residential), город из
@@ -320,28 +323,6 @@ def service_country(port, svc):
     return m.group(1) if m else None
 
 
-# Маркеры страницы недоступности Gemini (Google блокирует по IP даже в
-# разрешённой стране — напр. на «голых» VPN-узлах). Детект по живому ответу.
-GEMINI_BLOCK_RE = re.compile(
-    r"(isn'?t|is not|aren'?t|are not) (currently )?(available|supported)"
-    r"|not (currently )?(available|supported) (in your|here)"
-    r"|unsupported_country", re.I)
-
-
-def gemini_live(port):
-    # Прямая проверка Gemini: 'block' если страница говорит о недоступности,
-    # 'pass' если приложение грузится (есть bard-frontend), 'unknown' при сбое.
-    status, body, _ = via_socks(port, 'https://gemini.google.com/app', timeout=12)
-    if status is None:
-        return 'unknown'
-    body = body or ''
-    if GEMINI_BLOCK_RE.search(body):
-        return 'block'
-    if status == 200 and ('bard-frontend' in body or 'WIZ_global_data' in body):
-        return 'pass'
-    return 'unknown'
-
-
 def decide_by_country(svc, svc_cc, fallback_cc, blocklist):
     # block если страна в блок-листе; pass если страна известна и НЕ в блоке;
     # unknown если страну определить не удалось.
@@ -380,14 +361,21 @@ def test_node(node, cfg, port=SOCKS_PORT):
                 services[s] = decide_by_country(s, None, country, block)
                 continue
             if s == 'chatgpt':
+                # фактический probe доступа (единственный сервис с надёжным
+                # анонимным гео-сигналом — compliance-эндпоинт OpenAI)
                 live = chatgpt_live(port)
                 services[s] = live if live != 'unknown' else decide_by_country(s, None, country, block)
-            elif s == 'gemini':
-                live = gemini_live(port)
-                services[s] = live if live != 'unknown' else decide_by_country(s, None, country, block)
-            else:
+            elif s in SERVICE_TRACE:
+                # claude/grok/perplexity: страна, которую видит сам сервис
                 svc_cc = service_country(port, s)
                 services[s] = decide_by_country(s, svc_cc, country, block)
+            else:
+                # gemini: живой детект невозможен (страница /app отдаёт 200
+                # с bard-frontend в ЛЮБОМ регионе — блок виден только в
+                # авторизованной сессии). Поэтому страна по блок-листу:
+                # «регион официально поддерживается». Реальный доступ под
+                # своим аккаунтом проверяется на телефоне (Этап D).
+                services[s] = decide_by_country(s, None, country, block)
         # ручные исключения (Диана видит блок — дописывает в конфиг)
         for s in manual.get(node['name'], []):
             if s in services:
