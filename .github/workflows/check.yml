@@ -26,7 +26,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install "requests[socks]"
+        run: pip install "requests[socks]" geoip2
 
       - name: Download Xray-core
         run: |
@@ -35,6 +35,14 @@ jobs:
           unzip -o xray.zip xray
           chmod +x xray
           ./xray version
+
+      - name: Download GeoLite2 (mirror, no key)
+        run: |
+          curl -sL -o GeoLite2-City.mmdb \
+            https://github.com/P3TERX/GeoLite.mmdb/releases/latest/download/GeoLite2-City.mmdb
+          curl -sL -o GeoLite2-ASN.mmdb \
+            https://github.com/P3TERX/GeoLite.mmdb/releases/latest/download/GeoLite2-ASN.mmdb
+          ls -la *.mmdb
 
       - name: Run RouteHub server
         env:
